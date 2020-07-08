@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 
 import './Store.css';
 import { getPokemons } from '../services/api';
-import { PurchaseContext } from '../contexts/PurchaseContext';
+import { StoreContext } from '../contexts/StoreContext';
 import { toMoney } from '../util/util';
 
 export default () => {
@@ -10,7 +10,8 @@ export default () => {
         next: '',
         results: []
     });
-    const { addPurchase } = useContext(PurchaseContext);
+
+    const { inputValue, getFilteredPokemons, addPurchase } = useContext(StoreContext);
 
     useEffect(() => {
         const updatePokemons = async () => {
@@ -28,7 +29,13 @@ export default () => {
     }, [pokemons]);
 
     const addPokemonCard = () => {
-        return pokemons.results.map(result => {
+        let filteredPokemons = [];
+
+        if (inputValue) filteredPokemons = getFilteredPokemons(pokemons.results);
+
+        const pokemonsItems = inputValue ? filteredPokemons : pokemons.results;
+
+        return pokemonsItems.map(result => {
             return (
                 <div className="pokemon-card" key={result.name}>
                     <span>{result.name}</span>

@@ -2,11 +2,11 @@ import React, { useContext } from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
 
 import './ShoppingCart.css';
-import { PurchaseContext } from '../contexts/PurchaseContext';
+import { StoreContext } from '../contexts/StoreContext';
 import { toMoney } from '../util/util';
 
 export default () =>  {
-    const { purchased, value } = useContext(PurchaseContext);
+    const { purchased, purchasePrice } = useContext(StoreContext);
 
     const addPurchaseItems = () => {
         const items = [];
@@ -26,7 +26,7 @@ export default () =>  {
     };
 
     const addPurchaseButton = () => {
-        if (value !== 0) {
+        if (purchasePrice !== 0) {
             return (
                 <button onClick={finishPurchase}>Finalizar Compra</button>
             )
@@ -43,7 +43,7 @@ export default () =>  {
                 {addPurchaseItems()}
             </ol>
             <p>
-                <span>Total:</span> {toMoney(value)}
+                <span>Total:</span> {toMoney(purchasePrice)}
             </p>
             {addPurchaseButton()}
         </aside>

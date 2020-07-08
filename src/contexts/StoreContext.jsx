@@ -1,10 +1,11 @@
 import React, { createContext, useState } from 'react';
 
-export const PurchaseContext = createContext();
+export const StoreContext = createContext();
 
 export default ({ children }) => {
+    const [inputValue, setInputValue] = useState('');
     const [purchased, setPurchased] = useState({});
-    const [value, setValue] = useState(0);
+    const [purchasePrice, setPurchasePrice] = useState(0);
 
     const addPurchase = (purchase) => {
         const name = Object.keys(purchase)[0];
@@ -20,12 +21,16 @@ export default ({ children }) => {
             setPurchased({...purchased, ...purchase})
         }
 
-        setValue(value + purchase[name].price);
+        setPurchasePrice(purchasePrice + purchase[name].price);
     };
 
+    const getFilteredPokemons = (pokemons) =>
+        pokemons.filter(pokemon => pokemon.name.toLowerCase().includes(inputValue.toLowerCase()));
+
     return (
-        <PurchaseContext.Provider value={{ purchased, value, addPurchase }}>
+        <StoreContext.Provider value={{ inputValue, setInputValue, getFilteredPokemons,
+                                        purchased, purchasePrice, addPurchase }}>
             { children }
-        </PurchaseContext.Provider>
+        </StoreContext.Provider>
     );
 }

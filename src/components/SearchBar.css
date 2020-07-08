@@ -8,6 +8,10 @@
     padding: 0 1rem;
 }
 
+.search-bar > svg {
+    flex-shrink: 0;
+}
+
 .search-bar input {
     border: none;
     font-size: 1.5rem;

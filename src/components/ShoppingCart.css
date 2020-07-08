@@ -1,0 +1,26 @@
+.shopping-cart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    margin: 0 3rem;
+}
+
+.shopping-cart--title {
+    display: flex;
+    align-items: center;
+}
+
+.shopping-cart--title span {
+    font-size: 1.4rem;
+    margin: 0 0.75rem;
+}
+
+.shopping-cart > p {
+    color: green;
+}
+
+.shopping-cart > p > span {
+    color: #000;
+    font-weight: 700;
+}

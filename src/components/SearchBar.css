@@ -1,0 +1,17 @@
+.search-bar, .search-bar > input {
+    background-color: #C4C4C4;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.search-bar input {
+    border: none;
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 1rem;
+    width: 100%;
+}

@@ -1,0 +1,1 @@
+export const toMoney = price => `R$ ${price},00`;

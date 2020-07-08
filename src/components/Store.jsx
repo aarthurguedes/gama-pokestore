@@ -34,7 +34,7 @@ export default () => {
                     <span>{result.name}</span>
                     <img src={result.imgURL} alt={result.name}/>
                     <span>{toMoney(result.price)}</span>
-                    <button onClick={() => addPurchase({ name: result.name,  price: result.price })}>Comprar</button>
+                    <button onClick={() => addPurchase({ [result.name]: { quantity: 1, price: result.price } })}>Comprar</button>
                 </div>
             );
         });

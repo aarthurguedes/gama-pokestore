@@ -8,12 +8,16 @@ import { toMoney } from '../util/util';
 export default () =>  {
     const { purchased, value } = useContext(PurchaseContext);
 
-    const addPurchaseItem = () => {
-        return purchased.map((purchase, index) => {
-            return (
-                <li key={index}>{`${purchase.name} - ${toMoney(purchase.price)}`}</li>
+    const addPurchaseItems = () => {
+        const items = [];
+
+        for (const name in purchased) {
+            items.push(
+                <li key={name}>{name} ({purchased[name].quantity}) - {toMoney(purchased[name].price)}</li>
             );
-        })
+        }
+
+        return items.map(item => item);
     }
 
     const finishPurchase = () => {
@@ -36,7 +40,7 @@ export default () =>  {
                 <span>Carrinho</span>
             </div>
             <ol>
-                {addPurchaseItem()}
+                {addPurchaseItems()}
             </ol>
             <p>
                 <span>Total:</span> {toMoney(value)}
